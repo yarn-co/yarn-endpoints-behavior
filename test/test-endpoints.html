@@ -1,0 +1,21 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<link rel="import" href="../yarn-endpoints-behavior.html">
+
+<dom-module id="test-endpoints"></dom-module>
+
+<script>
+(function() {
+
+  Polymer({
+
+    is: 'test-endpoints',
+
+    behaviors: [
+      YarnBehaviors.EndpointsBehavior
+    ]
+
+  });
+
+})();
+</script>
