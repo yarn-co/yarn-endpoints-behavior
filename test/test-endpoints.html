@@ -7,9 +7,19 @@
 <script>
 (function() {
 
+  var defaultEndpoints = {
+    createDog: 'POST /dogs'
+  };
+
   Polymer({
 
     is: 'test-endpoints',
+
+    ready: function() {
+
+      this.host = 'dogtown.org';
+      this.set('endpoints', defaultEndpoints);
+    },
 
     behaviors: [
       YarnBehaviors.EndpointsBehavior
