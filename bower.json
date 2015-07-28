@@ -9,7 +9,7 @@
     "endpoints"
   ],
   "license": "MIT",
-  "description": "Polymer v1 AJAX endpoints",
+  "description": "Polymer v1 API endpoint definitions",
   "authors": [
     "Devin Ivy <devin@bigroomstudios.com>"
   ],

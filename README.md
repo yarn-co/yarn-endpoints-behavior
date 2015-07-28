@@ -1,7 +1,7 @@
 # yarn-endpoints-behavior
 **YarnBehaviors.EndpointsBehavior**
 
-Polymer v1 AJAX endpoints
+Polymer v1 API endpoint definitions
 
 [![Build Status](https://travis-ci.org/yarn-co/yarn-endpoints-behavior.svg?branch=master)](https://travis-ci.org/yarn-co/yarn-endpoints-behavior)
 
