@@ -146,7 +146,7 @@ var YarnBehaviors = YarnBehaviors || {};
       return protocol + '://' + host + path;
     },
 
-    _makeMethod: function(endpoint, endpointsChange) {
+    _makeMethod: function(endpoint) {
 
       if (!this._endpointsReady()) return;
 
