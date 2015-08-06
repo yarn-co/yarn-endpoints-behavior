@@ -98,7 +98,7 @@ var YarnBehaviors = YarnBehaviors || {};
       url: {
         type: 'String',
         notify: true,
-        computed: '_makeUrl(protocol, host, endpoint, params.*)'
+        computed: '_makeUrl(protocol, host, endpoint, params.*, _normalizedEndpoints)'
       },
 
       /**
@@ -107,7 +107,7 @@ var YarnBehaviors = YarnBehaviors || {};
       method: {
         type: 'String',
         notify: true,
-        computed: '_makeMethod(endpoint)'
+        computed: '_makeMethod(endpoint, _normalizedEndpoints)'
       },
 
       _normalizedEndpoints: {
@@ -117,7 +117,9 @@ var YarnBehaviors = YarnBehaviors || {};
 
     },
 
-    _makeUrl: function(protocol, host, endpoint, paramsChange) {
+    _makeUrl: function(protocol, host, endpoint) {
+
+      if (!this._endpointsReady()) return;
 
       var definition = this._normalizedEndpoints[endpoint];
 
@@ -144,7 +146,9 @@ var YarnBehaviors = YarnBehaviors || {};
       return protocol + '://' + host + path;
     },
 
-    _makeMethod: function(endpoint) {
+    _makeMethod: function(endpoint, endpointsChange) {
+
+      if (!this._endpointsReady()) return;
 
       var definition = this._normalizedEndpoints[endpoint];
 
@@ -156,7 +160,7 @@ var YarnBehaviors = YarnBehaviors || {};
       return definition.method;
     },
 
-    _normalizeEndpoints: function(endpointsChange) {
+    _normalizeEndpoints: function() {
 
       var normalized = {};
 
@@ -217,6 +221,13 @@ var YarnBehaviors = YarnBehaviors || {};
       }
 
       return normalized;
+    },
+
+    _endpointsReady: function() {
+
+      var normed = this._normalizedEndpoints;
+
+      return (typeof normed !== 'undefined' && Object.keys(normed).length);
     }
 
   };

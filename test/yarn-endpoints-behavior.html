@@ -23,7 +23,13 @@
         <test-endpoints></test-endpoints>
       </template>
     </test-fixture>
-
+    
+    <test-fixture id="attribute">
+      <template>
+        <test-endpoints endpoint="createDog"></test-endpoints>
+      </template>
+    </test-fixture>
+    
     <script>
       suite('<yarn-endpoints-behavior>', function() {
 
@@ -34,7 +40,16 @@
           endpts = fixture('simple');
         });
 
-        test('allows `endpoints` initialization in `ready`.', function(done) {
+        test('allows `endpoints` initialization in `ready` with `endpoint` specified as attribute.', function(done) {
+
+          var attrEndpts = fixture('attribute');
+
+          expect(attrEndpts.method).to.equal('post');
+          expect(attrEndpts.url).to.equal('http://dogtown.org/dogs');
+          done();
+        });
+
+        test('allows `endpoints` initialization in `ready` then specifying `endpoint`.', function(done) {
 
           endpts.endpoint = 'createDog';
 
@@ -144,7 +159,9 @@
           expect(endpts.method).to.equal('delete');
           expect(endpts.url).to.equal(null);
 
-          endpts.set('params', '144');
+          endpts.set('params', {
+            dogId: 144
+          });
 
           expect(endpts.method).to.equal('delete');
           expect(endpts.url).to.equal(null);
