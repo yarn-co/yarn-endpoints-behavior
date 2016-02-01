@@ -196,6 +196,20 @@
           expect(endpts.url).to.equal('http://dogtown.org/dogs/bad%20id/owner/also%20bad');
           done();
         });
+        
+        test('Path variable includes encoded path parameters.', function(done) {
+
+          endpts.endpoint = 'removeOwner';
+
+          endpts.set('params', {
+            dogId: 'bad id',
+            ownerId: 'also bad'
+          });
+
+          expect(endpts.method).to.equal('delete');
+          expect(endpts.path).to.equal('/dogs/bad%20id/owner/also%20bad');
+          done();
+        });
 
         test('can re-specify `host` and `protocol`.', function(done) {
 
