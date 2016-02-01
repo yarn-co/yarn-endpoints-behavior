@@ -102,6 +102,14 @@ var YarnBehaviors = YarnBehaviors || {};
       },
 
       /**
+       * The request path built from the computed URL
+       */
+      path: {
+        type: 'String',
+        notify: true
+      }
+
+      /**
        * The computed request method
        */
       method: {
@@ -142,6 +150,8 @@ var YarnBehaviors = YarnBehaviors || {};
 
         path = path.replace('{' + param + '}', encodeURIComponent(this.params[param]));
       }
+
+      this.set('path', path);
 
       return protocol + '://' + host + path;
     },
