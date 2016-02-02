@@ -152,7 +152,7 @@ var YarnBehaviors = YarnBehaviors || {};
         path = path.replace('{' + param + '}', encodeURIComponent(this.params[param]));
       }
 
-      this.set('path', path);
+      this._setPath(path);
 
       return protocol + '://' + host + path;
     },
