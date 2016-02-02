@@ -152,7 +152,7 @@
           done();
         });
 
-        test('sets `url` to `null` if path parameters are not fully specified.', function(done) {
+        test('sets `url` and `path` to `null` if path parameters are not fully specified.', function(done) {
 
           endpts.endpoint = 'removeOwner';
 
@@ -164,12 +164,13 @@
           });
 
           expect(endpts.method).to.equal('delete');
+          expect(endpts.path).to.equal(null);
           expect(endpts.url).to.equal(null);
 
           done();
         });
 
-        test('sets `url` when path parameters are specified in full.', function(done) {
+        test('sets `url` and `path` when path parameters are specified in full.', function(done) {
 
           endpts.endpoint = 'removeOwner';
 
@@ -179,6 +180,7 @@
           });
 
           expect(endpts.method).to.equal('delete');
+          expect(endpts.path).to.equal('/dogs/144/owner/13');
           expect(endpts.url).to.equal('http://dogtown.org/dogs/144/owner/13');
           done();
         });
@@ -193,21 +195,8 @@
           });
 
           expect(endpts.method).to.equal('delete');
-          expect(endpts.url).to.equal('http://dogtown.org/dogs/bad%20id/owner/also%20bad');
-          done();
-        });
-        
-        test('Path variable includes encoded path parameters.', function(done) {
-
-          endpts.endpoint = 'removeOwner';
-
-          endpts.set('params', {
-            dogId: 'bad id',
-            ownerId: 'also bad'
-          });
-
-          expect(endpts.method).to.equal('delete');
           expect(endpts.path).to.equal('/dogs/bad%20id/owner/also%20bad');
+          expect(endpts.url).to.equal('http://dogtown.org/dogs/bad%20id/owner/also%20bad');
           done();
         });
 

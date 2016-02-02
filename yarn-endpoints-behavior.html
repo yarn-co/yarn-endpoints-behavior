@@ -96,7 +96,7 @@ var YarnBehaviors = YarnBehaviors || {};
        * The computed request URL
        */
       url: {
-        type: 'String',
+        type: String,
         notify: true,
         computed: '_makeUrl(protocol, host, endpoint, params.*, _normalizedEndpoints)'
       },
@@ -105,7 +105,7 @@ var YarnBehaviors = YarnBehaviors || {};
        * The encoded request path built from the computed URL
        */
       path: {
-        type: 'String',
+        type: String,
         readOnly: true,
         notify: true
       },
@@ -114,7 +114,7 @@ var YarnBehaviors = YarnBehaviors || {};
        * The computed request method
        */
       method: {
-        type: 'String',
+        type: String,
         notify: true,
         computed: '_makeMethod(endpoint, _normalizedEndpoints)'
       },
@@ -146,6 +146,7 @@ var YarnBehaviors = YarnBehaviors || {};
         if (!this.params[param]) {
 
           console.warn('Path parameter "' + param + '" is not defined.');
+          this._setPath(null);
           return null;
         }
 
