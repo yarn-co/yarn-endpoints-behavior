@@ -102,6 +102,15 @@ var YarnBehaviors = YarnBehaviors || {};
       },
 
       /**
+       * The encoded request path built from the computed URL
+       */
+      path: {
+        type: 'String',
+        readOnly: true,
+        notify: true
+      },
+
+      /**
        * The computed request method
        */
       method: {
@@ -142,6 +151,8 @@ var YarnBehaviors = YarnBehaviors || {};
 
         path = path.replace('{' + param + '}', encodeURIComponent(this.params[param]));
       }
+
+      this._setPath(path);
 
       return protocol + '://' + host + path;
     },
